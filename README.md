@@ -20,7 +20,9 @@ This app showcases the following skills:
 Create `.env.local` with Github API Key and Secret. You can find the variable names for these in `App.js`.
 
 ```
-client_id=${ process.env.REACT_APP_GITHUB_CLIENT_ID }client_secret=${ process.env.REACT_APP_GITHUB_CLIENT_SECRET }
+client_id=${ process.env.REACT_APP_GITHUB_CLIENT_ID }
+
+client_secret=${ process.env.REACT_APP_GITHUB_CLIENT_SECRET }
 ```
 
 ## Available Scripts
