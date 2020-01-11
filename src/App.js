@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import './App.css';
 import Navbar from './components/layout/Navbar';
 import Search from './components/users/Search';
 import Users from './components/users/Users';
-import './App.css';
 import About from './components/pages/About';
-import axios from 'axios';
 import Alert from './components/layout/Alert';
 
 class App extends Component {

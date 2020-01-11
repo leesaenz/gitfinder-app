@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-//Decouping passed props for use in JSX
+//Decoupling passed props for use in JSX
 const Navbar = ({ title, icon, search }) => {
   return (
     <nav className='navbar bg-dark'>
