@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+//Decoupling subprops from the user prop passed for use in JSX
 const UserItem = ({ user: { login, avatar_url, html_url } }) => {
   return (
     <div className='card text-center'>
