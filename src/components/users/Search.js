@@ -5,14 +5,19 @@ export class Search extends Component {
     text: ''
   };
 
-  onChange = e => {
-    this.setState({ text: e.target.value });
+  onChange = e => this.setState({ text: e.target.value });
+
+  onSubmit = e => {
+    e.preventDefault();
+    //Take submitted text and submit it with request to Github
+    this.props.searchUsers(this.state.text);
+    this.setState({ text: '' });
   };
 
   render() {
     return (
       <div>
-        <form className='form' action=''>
+        <form className='form' onSubmit={this.onSubmit}>
           <input
             type='text'
             name='text'
