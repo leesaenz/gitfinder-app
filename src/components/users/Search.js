@@ -8,7 +8,10 @@ export class Search extends Component {
   };
 
   static propTypes = {
-    searchUsers: PropTypes.func.isRequired
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
+    setAlert: PropTypes.func.isRequired
   };
 
   //On change of the search input, the state of text is set to the value of user feedback
@@ -17,11 +20,16 @@ export class Search extends Component {
   //On form submit, the text is passed to the searchUsers prop, where it triggers the parent as an event.  The text is then cleared.
   onSubmit = e => {
     e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: '' });
+    if (this.state.text === '') {
+      this.props.setAlert('Search cannot be empty.  Try again.', 'danger');
+    } else {
+      this.props.searchUsers(this.state.text);
+      this.setState({ text: '' });
+    }
   };
 
   render() {
+    const { showClear, clearUsers } = this.props;
     return (
       <div>
         <form className='form' onSubmit={this.onSubmit}>
@@ -34,6 +42,11 @@ export class Search extends Component {
           />
           <input type='submit' className='btn btn-dark btn-block' />
         </form>
+        {showClear && (
+          <button className='btn btn-light btn-block' onClick={clearUsers}>
+            Clear
+          </button>
+        )}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 //Decouping passed props for use in JSX
 const Navbar = ({ title, icon, search }) => {
   return (
-    <nav className='navbar bg-primary'>
+    <nav className='navbar bg-dark'>
       <h1>
         <i className={icon} /> {title}
       </h1>
