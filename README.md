@@ -12,6 +12,8 @@ This app showcases the following skills:
 - Search functionality via API
 - Component organization
 - React Routing
+- The use of states in Functional Components via React Hooks
+- Class components and Functional components
 
 ## Setting Up API Keys
 
