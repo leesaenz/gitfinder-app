@@ -1,4 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project to showcase a MERN app with stateful, reusable components. The state logic has been contained at the main App level and spread through children with props and states.
+
+The app searches the Github API via Axios HTTP request and serves up results in a grid.
+
+This app showcases the following skills:
+
+- The use of reusable stateful and stateless components.
+- All states contained at the top app level
+- Passing of props and states to children
+- Passing props back up to parents
+- Setting states in controlled elements
+- Search functionality via API
+- Component organization
+- React Routing
+
+## Setting Up API Keys
+
+Create `.env.local` with Github API Key and Secret. You can find the variable names for these in `App.js`.
+
+```
+client_id=${ process.env.REACT_APP_GITHUB_CLIENT_ID }client_secret=${ process.env.REACT_APP_GITHUB_CLIENT_SECRET }
+```
 
 ## Available Scripts
 
