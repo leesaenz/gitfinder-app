@@ -5,12 +5,15 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Search from './components/users/Search';
 import Users from './components/users/Users';
+import User from './components/users/User';
 import About from './components/pages/About';
 import Alert from './components/layout/Alert';
 
 class App extends Component {
   state = {
     users: [],
+    repos: [],
+    user: {},
     loading: false,
     alert: null
   };
@@ -28,6 +31,28 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
 
+  //Get single user info
+  getUser = async username => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({ user: res.data, loading: false });
+  };
+
+  //Get repos
+  getUserRepos = async username => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    this.setState({ repos: res.data, loading: false });
+  };
+
   //Here, for clearing the user results, the state of users is set back to empty and loading is false
   clearUsers = () => this.setState({ users: [], loading: false });
 
@@ -43,7 +68,7 @@ class App extends Component {
 
   //showClear is a prop which is passed up from Search.js and resolved in this.clearUsers
   render() {
-    const { users, loading } = this.state;
+    const { users, loading, user, repos } = this.state;
     return (
       <Router>
         <div className='App'>
@@ -67,6 +92,20 @@ class App extends Component {
                 )}
               />
               <Route exact path='/about' component={About} />
+              <Route
+                exact
+                path='/user/:login'
+                render={props => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
+                    repos={repos}
+                    user={user}
+                    loading={loading}
+                  />
+                )}
+              ></Route>
             </Switch>
           </div>
         </div>
